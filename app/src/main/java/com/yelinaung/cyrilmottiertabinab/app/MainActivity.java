@@ -1,12 +1,12 @@
 package com.yelinaung.cyrilmottiertabinab.app;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,8 +17,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
-  private ViewPager mPager;
-  private TabView tabViews;
   private TabBarView tabBarView;
 
   @Override
@@ -35,27 +33,28 @@ public class MainActivity extends ActionBarActivity {
     v.setLayoutParams(new ViewGroup.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,
         WindowManager.LayoutParams.MATCH_PARENT));
 
-    getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-    getActionBar().setCustomView(v);
-
-    mPager = (ViewPager) findViewById(R.id.pagerContent);
+    ViewPager mPager = (ViewPager) findViewById(R.id.pagerContent);
 
     mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override public void onPageScrolled(int position, float positionOffset,
           int positionOffsetPixels) {
-        tabBarView.setStripColor(getResources().getColor(android.R.color.white));
+        tabBarView.setSelectedTab(position);
+        tabBarView.setOffset(positionOffset);
       }
 
       @Override public void onPageSelected(int position) {
-        tabBarView.setStripColor(getResources().getColor(android.R.color.white));
+        tabBarView.setSelectedTab(position);
       }
 
       @Override public void onPageScrollStateChanged(int state) {
-
       }
     });
 
-    tabBarView.setStripColor(getResources().getColor(android.R.color.white));
+    tabBarView.setStripHeight(10);
+    tabBarView.setStripColor(getResources().getColor(android.R.color.holo_red_light));
+
+    getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+    getActionBar().setCustomView(v);
 
     mPager.setAdapter(new MainPageAdapter(getSupportFragmentManager()));
   }
