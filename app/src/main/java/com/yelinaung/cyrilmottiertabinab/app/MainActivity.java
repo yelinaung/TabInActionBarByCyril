@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
       }
     });
 
-    tabBarView.setStripHeight(10);
+    tabBarView.setStripHeight(20);
     tabBarView.setStripColor(getResources().getColor(android.R.color.holo_red_light));
 
     getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
