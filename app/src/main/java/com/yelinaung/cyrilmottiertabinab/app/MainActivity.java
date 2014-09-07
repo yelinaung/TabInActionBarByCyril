@@ -1,12 +1,12 @@
 package com.yelinaung.cyrilmottiertabinab.app;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,8 +53,12 @@ public class MainActivity extends ActionBarActivity {
     tabBarView.setStripHeight(20);
     tabBarView.setStripColor(getResources().getColor(android.R.color.holo_red_light));
 
-    getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-    getActionBar().setCustomView(v);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      // alternative to actionBar.setDisplayShowCustomEnabled(true);
+      actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+      actionBar.setCustomView(v);
+    }
 
     mPager.setAdapter(new MainPageAdapter(getSupportFragmentManager()));
   }
